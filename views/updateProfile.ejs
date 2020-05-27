@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DashBoard</title>
+    <!-- icons -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <!-- navbar header -->
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/dashboard">BLOG</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/dashboard">DashBoard<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/user/me">Profile</a>
+            </li>
+            <!-- <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li> -->
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">Logout</a>
+            </li>
+          </ul>
+          <!-- <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form> -->
+          <form class="form-inline" action="/user/search" method="POST">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">@</span>
+              </div>
+              <input type="text" class="form-control" placeholder="Username" name="name"list="name">
+              <datalist id="name">
+                <% user.allUsers.forEach((user)=>{ %>
+                  <option value="<%= user %>">
+                <% })%>
+              </datalist>
+            </div>
+          </form>
+        </div>
+      </nav>
+      <!-- end of navbar header -->
+
+      <style>
+            .container {
+                box-shadow: 0 4px 8px 0 rgba(1, 1, 1, 0.7);
+                max-width: 400px;
+                padding: 50px;
+                margin: 100px auto;
+                text-align: center;
+                font-family: arial;
+            }
+            input {
+                width: 60%;
+                border: 1px solid #ccc;
+                float: right;
+                margin-right: 10px;
+            }
+            button[type=submit] {
+                border: none;
+                outline: 0;
+                display: inline-block;
+                padding: 8px;
+                color: white;
+                background-color: #000;
+                text-align: center;
+                cursor: pointer;
+                width: 100%;
+                font-size: 18px;
+                margin-top: 20px;
+            }
+            button[type=submit]:hover {
+                opacity: 0.7;
+            }
+      </style>
+        <%- include('partials/error') %>
+
+      <form action="/user/update" method="POST">
+    
+        <div class="container">
+            <div>
+                <label for="name"><b>Name</b></label>
+                <input type="name" id="name" name="name" placeholder="enter-name" value="<%= user.name%>" required>
+            </div>
+    
+            <div>
+                <label for="password"><b>Password</b></label>
+                <input type="password" name="password" id="password" placeholder="enter password" required minlength="7"> 
+            </div>
+                        
+            <div>
+                <label for="age"><b>Age</b></label>
+                <input type="number" name="age" id="age" placeholder="enter your age" value="<%= user.age%>"required>
+            </div>
+            <button type="submit">Update</button>
+        </div>
+    </form>
+</body>
+</html>
