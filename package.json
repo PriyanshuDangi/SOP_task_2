@@ -6,8 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
-    "dev": "nodemon app.js -e js,ejs",
-    "hlo": "/Users/91989/priyanshu/mongodb/bin/mongod.exe --dbpath=/Users/91989/priyanshu/mongodb-data"
+    "dev": "nodemon app.js -e js,ejs"
   },
   "author": "",
   "license": "ISC",
@@ -16,7 +15,6 @@
     "ejs": "^3.1.3",
     "express": "^4.17.1",
     "express-flash": "0.0.2",
-    "express-override": "^0.1.9",
     "express-session": "^1.17.1",
     "mongoose": "^5.9.15",
     "passport": "^0.4.1",
