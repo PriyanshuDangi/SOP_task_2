@@ -1,6 +1,7 @@
 const express = require('express')
 const passport = require('passport')
 const User = require('../models/user.js')
+const Article = require('../models/article.js')
 const {checkAuth, checkNotAuth} = require('../auth/checkauth.js')
 
 const router = new express.Router()
@@ -63,13 +64,42 @@ router.get('/dashboard', checkAuth, async (req, res)=>{
     })
 })
 
+router.get('/user/feed', checkAuth, async (req, res)=>{
+    try{
+        const articles = await Article.find()
+        for(let i =0; i < articles.length; i++){
+            await articles[i].populate('owner').execPopulate()
+        }
+        res.render('myfeed',{
+            articles,
+            user: req.user
+        })
+    }catch(err){
+        console.log(err)
+    }
+})
+
+router.get('/user/notification', checkAuth, async (req, res)=>{
+    try{
+        const unseenFollowers = req.user.unseenFollowers
+        req.user.unseenFollowers = 0
+        await req.user.save()
+        res.render('notification',{
+            user: req.user,
+            unseenFollowers
+        })
+    }catch(err){
+        console.log(err)
+    }
+})
+
 router.get('/user/update', checkAuth, async (req, res)=>{
     try{
         res.render('updateProfile', {
             user: req.user
         })
     }catch(err){
-
+        console.log(err)
     }
 })
 

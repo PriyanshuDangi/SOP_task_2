@@ -40,8 +40,8 @@ All the ticked features are added.
     specific content in the article.
     - [x] A dashboard page for viewing all the articles the person has created with an
     edit and delete option
-    - [] Create a dashboard page containing
-        - [] notification bar ( to indicate Anju’s new followers with seen and not
+    - [x] Create a dashboard page containing
+        - [x] notification bar ( to indicate Anju’s new followers with seen and not
     seen )
         - [x] To traverse between pages
     - [x] Sometimes Anju’s girlfriend forget her friend’s name so help her to identify or

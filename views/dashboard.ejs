@@ -17,87 +17,30 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <!-- navbar header -->
-    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="/dashboard">BLOG</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="/dashboard">DashBoard<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/user/me">Profile</a>
-            </li>
-            <!-- <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-            </li> -->
-            <li class="nav-item">
-              <a class="nav-link" href="/logout">Logout</a>
-            </li>
-          </ul>
-          <!-- <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form> -->
-          <form class="form-inline" action="/user/search" method="POST">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">@</span>
-              </div>
-              <input type="text" class="form-control" placeholder="Username" name="name" list="name">
-              <datalist id="name">
-                <% user.allUsers.forEach((user)=>{ %>
-                  <option value="<%= user %>">
-                <% })%>
-              </datalist>
-            </div>
-          </form>
-        </div>
-      </nav>
-      <!-- end of navbar header -->
-      
-      <div id="main-content">
+    <%- include('partials/navbar') %>
+	<div id="main-content">
         <%- include('partials/error') %>
-        <!-- <h1>
-            Welcome <%= user.name %>
-        </h1>
-        <h3>What you would like to do?</h3> -->
-
-        <!-- <a href="/article/create">Create Article</a> -->
         <div class="jumbotron">
-          <h1 class="display-4">Welcome <%= user.name %></h1>
-          <p class="lead">This is a very simple app with the help of which you can create article and share it with your friends.</p>
-          <hr class="my-4">
-          <p>This also has a powerful rich text editor so you can customize your article easily.</p>
-          <p class="lead">
-            <a class="btn btn-primary btn-lg" href="/article/create" role="button">Create Article</a>
-          </p>
+			<h1 class="display-4">Welcome <%= user.name %></h1>
+			<p class="lead">This is a very simple app with the help of which you can create article and share it with your friends.</p>
+			<hr class="my-4">
+			<p>This also has a powerful rich text editor so you can customize your article easily.</p>
+			<p class="lead">
+				<a class="btn btn-primary btn-lg" href="/article/create" role="button">Create Article</a>
+			</p>
         </div>
 
         <div class="container">
-                <h2>Your Articles</h2>
-                <% for(let i=0 ; i < user.article.length; i++ ) {%>
-                    <div class="articleContainer">
-                        <h3 style="float: left; clear: left;"><%= user.article[i].title %></h3> &nbsp; 
-                        <!-- <span> ( 11 march 20002 ) </span> -->
-                        <a href="/article/edit/<%= user.article[i]._id %>" class="tool-items fa fa-pencil fa-2x"></a> &nbsp;
-                        <a href="/article/delete/<%= user.article[i]._id %>" ><i class="fa fa-trash fa-2x"></i></a> &nbsp;
-                    </div>
-                <% } %>
+			<h2>Your Articles</h2>
+			<% for(let i=0 ; i < user.article.length; i++ ) {%>
+				<div class="articleContainer">
+					<h3 style="float: left; clear: left;"><%= user.article[i].title %></h3> &nbsp; 
+					<!-- <span> ( 11 march 20002 ) </span> -->
+					<a href="/article/edit/<%= user.article[i]._id %>" class="tool-items fa fa-pencil fa-2x"></a> &nbsp;
+					<a href="/article/delete/<%= user.article[i]._id %>" ><i class="fa fa-trash fa-2x"></i></a> &nbsp;
+				</div>
+			<% } %>
         </div>
-      </div>
-
+    </div>
 </body>
 </html>

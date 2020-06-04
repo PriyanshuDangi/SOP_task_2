@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DashBoard</title>
+    <!-- icons -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<style>
+		img{
+		  	width: 15vmax;
+			height: 15vmax;
+		}
+		.articleContainer{
+			width: 80%;
+			margin: auto;
+		}
+		.articleBoxes{
+			background-color: aqua;
+			margin: 20px;
+		}
+		.articlesHidden{
+			max-height: 200px;
+			overflow: hidden;
+		}
+		.articlesShow{
+  
+		}
+		#title{
+			text-align: center;
+			margin-bottom: 15px;
+		}
+		#title #head{
+		  	font-size: 30px;
+		}
+		#title #by{
+			font-size: 12px;
+			color: #444444;
+		}
+	</style>
+</head>
+<body>
+    <%- include('partials/navbar') %>
+    <section>
+        <div class="articleContainer">
+            <% articles.forEach((article)=>{ %>
+                <div class="articleBoxes">
+                  	<div class="articlesHidden">
+						<div id="title">
+							<span id="head"> <%= article.title %></span>
+							<span id="by">by <%= article.owner.name %></span>
+						</div>
+						<p><%- article.content %></p>
+                  	</div> 
+                 	<div onclick="show(this);">Read More...</div>
+                </div>
+            <% }) %>
+        </div>
+    </section>
+    <script>
+		function show(ele){
+			var element = ele.previousElementSibling
+			ele.style.display = 'none'
+			element.className = "articlesShow"
+		}
+    </script>
+</body>
+</html>

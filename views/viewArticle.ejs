@@ -14,84 +14,38 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<style>
+		img{
+			max-width: 300px;
+			max-height: 300px;
+		}
+		#heading {
+			text-align: center;
+			/* background-color: mediumspringgreen; */
+			padding: 30px;
+		}
+		span {
+			color: rgba(0, 0, 0, 0.6);
+		}
+		#main-content{
+			width: 80%;
+			margin: auto;
+			background-color: aqua;
+		}
+	</style>
 </head>
 <body>
-    <!-- navbar header -->
-    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="/dashboard">BLOG</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="/dashboard">DashBoard<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/user/me">Profile</a>
-            </li>
-            <!-- <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-            </li> -->
-            <li class="nav-item">
-              <a class="nav-link" href="/logout">Logout</a>
-            </li>
-          </ul>
-          <!-- <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form> -->
-          <form class="form-inline" action="/user/search" method="POST">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">@</span>
-              </div>
-              <input type="text" class="form-control" placeholder="Username" name="name"list="name">
-              <datalist id="name">
-                <% user.allUsers.forEach((user)=>{ %>
-                  <option value="<%= user %>">
-                <% })%>
-              </datalist>
-            </div>
-          </form>
-        </div>
-        </nav>
-        <!-- end of navbar header -->
-
-        <style>
-            img{
-                max-width: 300px;
-                max-height: 300px;
-            }
-            #heading {
-                text-align: center;
-                background-color: mediumspringgreen;
-                padding: 30px;
-            }
-            span {
-                color: rgba(0, 0, 0, 0.6);
-            }
-        </style>
-
-        <div id="main-content">
-            <div id="heading">
-                <h1> <%= article.title %></h1>
-                <span>Article By: <%= owner.name %></span> <br>
-                <span>Updated At: <%= updatedAt%> </span>
-            </div>
-            <div class="jumbotron">
-                <%- article.content %> 
-            </div>
-        </div>
+  <%- include('partials/navbar') %>
+	<div id="main-content">
+		<div id="heading">
+			<h1> <%= article.title %></h1>
+			<span>Article By: <%= owner.name %></span> <br>
+			<span>Updated At: <%= updatedAt%> </span>
+		</div>
+		<div class="content">
+			<%- article.content %> 
+		</div>
+	</div>
 </body>
 </html>

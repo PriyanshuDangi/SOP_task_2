@@ -36,6 +36,10 @@ const userSchema = new mongoose.Schema({
     followers: [{
         type: String
     }],
+    unseenFollowers:{
+        type: Number,
+        default: 0
+    },
     followingCount: {
         type: Number,
         default: 0
@@ -69,6 +73,7 @@ userSchema.methods.followersChange = async function(count, username){
         user.followersCount += count
         if(count == 1){
             user.followers = user.followers.concat(username)
+            user.unseenFollowers += 1
         }else{
             let index = user.followers.indexOf(username)
             user.followers.splice(index, 1)
