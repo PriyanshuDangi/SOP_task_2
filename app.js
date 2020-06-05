@@ -47,6 +47,7 @@ app.use((req, res, next)=>{
 app.use(userRouter)
 app.use(articleRouter)
 
-app.listen(8000, ()=>{
-    console.log('server is up on port 8000')
+const port = process.env.PORT ||8000
+app.listen(port, ()=>{
+    console.log('server is up on port ' + port)
 })
