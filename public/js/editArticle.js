@@ -73,10 +73,10 @@ document.querySelector('#submit').addEventListener('click', (e)=>{
         })
     }).then((response)=>{
       if(response.status == 200){
-        window.location.href = `http://localhost:8000/article/view/${id}`
+        window.location.href = `/article/view/${id}`
       } else{
         alert('unable to edit article')
-        window.location.href = `http://localhost:8000/dashboard`
+        window.location.href = `/dashboard`
       }
     }).catch(error=>{
       console.log(error)

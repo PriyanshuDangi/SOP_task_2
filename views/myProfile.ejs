@@ -93,7 +93,7 @@
     <div class="container">
       	<h2 style="text-align: center;" >Articles</h2>
       	<% for(let i=0 ; i < user.article.length; i++ ) {%>
-			<div class="articleContainer" onclick="window.location.href = 'http://localhost:8000/article/view/<%= user.article[i]._id %>';">
+			<div class="articleContainer" onclick="window.location.href = '/article/view/<%= user.article[i]._id %>';">
 				<h3><%= user.article[i].title %></h3> 
 				<!-- <span style="float: right;">( 11 march 20002 )</span> -->
 			</div>
