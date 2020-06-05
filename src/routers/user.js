@@ -42,26 +42,20 @@ router.post('/login', passport.authenticate('local', {
     failureRedirect: '/login',
     failureFlash: true,
     successRedirect: '/dashboard'
-})
-// , (req, res)=>{
-
-// }, (err, req, res, next)=>{
-//     // console.log('hey')
-//     console.log(err)
-//     req.flash('message', 'Invalid Email Or Password');
-//     res.redirect('/login')
-//     next()
-// }
-)
+}))
 
 router.get('/dashboard', checkAuth, async (req, res)=>{
-    await req.user.populate('article').execPopulate();
-    // console.log(req.user.article)
-    // console.log(req.user.allUsers)
-    res.render('dashboard', {
-        name: req.user.name,
-        user: req.user
-    })
+    try{
+        await req.user.populate('article').execPopulate();
+        res.render('dashboard', {
+            name: req.user.name,
+            user: req.user
+        })
+    }catch(err){
+        req.flash('error_msg', 'unable to get dashboard')
+        res.redirect('/login')
+        console.log(err)
+    }
 })
 
 router.get('/user/feed', checkAuth, async (req, res)=>{
@@ -75,6 +69,8 @@ router.get('/user/feed', checkAuth, async (req, res)=>{
             user: req.user
         })
     }catch(err){
+        req.flash('error_msg', 'unable to get feed')
+        res.redirect('/dashboard')
         console.log(err)
     }
 })
@@ -89,6 +85,8 @@ router.get('/user/notification', checkAuth, async (req, res)=>{
             unseenFollowers
         })
     }catch(err){
+        req.flash('error_msg', 'unable to get notifications')
+        res.redirect('/dashboard')
         console.log(err)
     }
 })
@@ -99,6 +97,8 @@ router.get('/user/update', checkAuth, async (req, res)=>{
             user: req.user
         })
     }catch(err){
+        req.flash('error_msg', 'unable to update')
+        res.redirect('/dashboard')
         console.log(err)
     }
 })
@@ -128,14 +128,15 @@ router.post('/user/search', checkAuth, async (req, res)=>{
     try{
         const user = await User.findOne({name: req.body.name})
         if(!user){
-            // return res.send('there is no such user')
             req.flash('error_msg', 'there is no such user')
             res.redirect('/dashboard')
         }else{
             res.redirect('/user/profile/'+ user._id)
         }
     }catch(err){
-        res.send(err)
+        req.flash('error_msg', 'unable to get user')
+        res.redirect('/dashboard')
+        console.log(err)
     }
 })
 
@@ -147,7 +148,9 @@ router.get('/user/me', checkAuth, async (req, res)=>{
             user: req.user
         })
     }catch(err){
-
+        req.flash('error_msg', 'unable to get profile')
+        res.redirect('/dashboard')
+        console.log(err)
     }
 })
 
@@ -156,7 +159,9 @@ router.get('/user/profile/:uid', checkAuth, async (req, res)=>{
     try{
         const user = await User.findOne({_id: req.params.uid})
         if(!user){
-            return res.send('there is no such user!')
+            req.flash('error_msg', 'unable to get requested user')
+            res.redirect('/dashboard')
+            return ;
         }
         await user.populate('article').execPopulate()
         let follow = "follow"
@@ -170,7 +175,9 @@ router.get('/user/profile/:uid', checkAuth, async (req, res)=>{
             follow
         })
     }catch(err){
-        res.send(err)
+        req.flash('error_msg', 'unable to get requested user profile')
+        res.redirect('/dashboard')
+        console.log(err)
     }
 })
 
@@ -187,14 +194,22 @@ router.get('/user/follow/:uid', checkAuth, async (req, res)=>{
         }
         res.redirect('/user/profile/' + req.params.uid)
     }catch(err){
-
+        req.flash('error_msg', 'unable to follow')
+        res.redirect('/dashboard')
+        console.log(err)
     }
 })
 
 //logout
 router.get('/logout', checkAuth, (req, res)=>{
-    req.logout()
-    res.redirect('/login')
+    try{
+        req.logout()
+        res.redirect('/login')
+    }catch(err){
+        req.flash('error_msg', 'unable to logout')
+        res.redirect('/dashboard')
+        console.log(err)
+    }
 })
 
 module.exports = router

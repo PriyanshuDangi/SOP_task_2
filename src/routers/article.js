@@ -33,7 +33,9 @@ router.get('/article/edit/:aid', checkAuth, async(req, res)=>{
             user: req.user
         })
     }catch(err){
-
+        req.flash('error_msg', 'unable to get article')
+        res.redirect('/dashboard')
+        console.log(err)
     }
 })
 
@@ -77,7 +79,9 @@ router.get('/article/view/:aid', checkAuth, async(req, res)=>{
             user: req.user
         })
     } catch(err){
-
+        req.flash('error_msg', 'unable to view articles')
+        res.redirect('/dashboard')
+        console.log(err)
     }
 })
 
@@ -92,7 +96,9 @@ router.get('/article/delete/:_id', checkAuth, async (req, res)=>{
         await req.user.articleCount(-1)
         res.redirect('/dashboard')
     }catch(err){
-        res.send(err)
+        req.flash('error_msg', 'unable to delete article')
+        res.redirect('/dashboard')
+        console.log(err)
     }
 })
 module.exports = router
