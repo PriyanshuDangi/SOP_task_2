@@ -1,4 +1,4 @@
-# spider_task_3
+# SOP_task_2
 The task is to create a social website for Anju's girlfriend through which she can post her articles and share it with her friends.
 ## Getting Started
 1. Download or clone this repo to your local system
