@@ -40,9 +40,11 @@ router.get('/login', (req, res)=>{
 
 router.post('/login', passport.authenticate('local', {
     failureRedirect: '/login',
-    failureFlash: true,
-    successRedirect: '/dashboard'
-}))
+    failureFlash: true
+}), (req, res)=>{
+    res.redirect(req.session.returnTo || '/dashboard');
+    delete req.session.returnTo;
+})
 
 router.get('/dashboard', checkAuth, async (req, res)=>{
     try{
@@ -203,6 +205,7 @@ router.get('/user/follow/:uid', checkAuth, async (req, res)=>{
 //logout
 router.get('/logout', checkAuth, (req, res)=>{
     try{
+        delete req.session.returnTo;
         req.logout()
         res.redirect('/login')
     }catch(err){

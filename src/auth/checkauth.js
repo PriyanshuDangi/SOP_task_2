@@ -13,6 +13,7 @@ const checkAuth = async (req, res, next)=>{
         req.user.allUsers = allUsersName
         return next()
     }
+    req.session.returnTo = req.originalUrl;
     // const allUsers = await User.find()
     // console.log(index)
     // allUsers.splice(index, 1)
