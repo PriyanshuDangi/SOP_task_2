@@ -54,7 +54,6 @@
 			</div>
 			<div id="notifications">
 				<% for(let index = user.followers.length-1; index >= 0; index--){%>
-				<!-- user.followers.forEach((notif, index)=>{ -->
 					<% if(index < unseenFollowers){%>
 						<div class="items unseen">                       
 							<p><%= user.followers[index] %> started following you.</p>

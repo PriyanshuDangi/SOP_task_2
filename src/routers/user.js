@@ -60,6 +60,7 @@ router.get('/dashboard', checkAuth, async (req, res)=>{
     }
 })
 
+//to get feed page
 router.get('/user/feed', checkAuth, async (req, res)=>{
     try{
         const articles = await Article.find()
@@ -77,6 +78,7 @@ router.get('/user/feed', checkAuth, async (req, res)=>{
     }
 })
 
+//to get notification
 router.get('/user/notification', checkAuth, async (req, res)=>{
     try{
         const unseenFollowers = req.user.unseenFollowers
@@ -93,6 +95,7 @@ router.get('/user/notification', checkAuth, async (req, res)=>{
     }
 })
 
+//to user update form page
 router.get('/user/update', checkAuth, async (req, res)=>{
     try{
         res.render('updateProfile', {

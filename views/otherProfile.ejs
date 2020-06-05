@@ -87,12 +87,6 @@
 			<p class="email"><%= otherUser.email %></p>
 			<p>Age: <%= otherUser.age%></p>
 			<p>TotalArticle: <%= otherUser.totalArticle %></p>
-			<!-- <div style="margin: 24px 0;">
-				<a href="#"><i class="fa fa-dribbble"></i></a> 
-				<a href="#"><i class="fa fa-twitter"></i></a>  
-				<a href="#"><i class="fa fa-linkedin"></i></a>  
-				<a href="#"><i class="fa fa-facebook"></i></a> 
-			</div> -->
 			<div id="count">
 				<p>Followers: <br><%= otherUser.followersCount%></p>
 				<p>Following:  <br><%= otherUser.followingCount%></p>
@@ -105,7 +99,6 @@
 			<% for(let i=0 ; i < otherUser.article.length; i++ ) {%>
 				<div class="articleContainer" onclick="window.location.href = '/article/view/<%= otherUser.article[i]._id %>';">
 					<h3 style="text-align: center;"><%= otherUser.article[i].title %></h3>
-					<!-- <span style="float: right;">( 11 march 20002 )</span> -->
 				</div>
 			<% } %>
 		</div>

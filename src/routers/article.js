@@ -41,28 +41,15 @@ router.get('/article/edit/:aid', checkAuth, async(req, res)=>{
 
 // to save the article edited
 router.post('/article/edit/:aid', checkAuth, async(req, res)=>{
-    // const article = await Article.findOne({_id: req.params.aid, owner: req.user._id})
-    // console.log(article)
-    // console.log(req.body)
-    // return
     try{
         const article = await Article.findOneAndUpdate({_id: req.params.aid, owner: req.user._id}, {...req.body}, {new: true, runValidators: true})
         if(!article){
             return res.send('sorry we cant edit this article')
         }
-        // article.content = req.body.content
-        // article.title = req.body.title
-        // await article.save()
-        // res.send(article)
-        // res.send({article})
-        console.log('hey')
-        // res.redirect('/dashboard')
-        // res.redirect('/dashboard')
         res.status(200).send()
-        // res.redirect('/user/profile/'+ req.user._id)
     }catch(err){
         res.status(400).send()
-        console.error(err, '46')
+        console.error(err)
         return new Error(err)
     }
 })

@@ -57,13 +57,9 @@
 <body>
   	<%- include('partials/navbar') %>
     
-    <!-- action="/article/edit/<%=article._id%>" method="POST" -->
-    <!-- <form id="form"> -->
     <section>
         <div id="id" style="display: none;"><%=article._id%></div>
         <div>
-            <!-- <label for="title">Title</label> -->
-            <!-- <input type="text" name="title" id="title" value="<%= article.title %>"> -->
             <br>
             <h1 id="title" contenteditable="true"><%= article.title %></h1>
         </div>
@@ -90,7 +86,6 @@
             <button type="submit" id="submit">Submit</button>
         </div>
     </section>
-    <!-- </form>  -->
     <script src="/js/editArticle.js"></script>
 </body>
 </html>

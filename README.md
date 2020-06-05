@@ -12,7 +12,7 @@ The task is to create a social website for Anju's girlfriend through which she c
 5. Now, you should be able to see the node modules folder with all dependencies installed.
 6. Install the mongodb community edition from here [Mongodb official documentation](https://docs.mongodb.com/manual/administration/install-community/)
 7. Ensure that mongo service has started and is listening on port 27017
-8. Now , run the following command back in the terminal at the project folder node app.js
+8. Now , run the following command back in the terminal at the project folder npm run dev
 9. Navigate to http://localhost:8000/login and you should be able to view the login page
 ## Sub Tasks
 All the ticked features are added.

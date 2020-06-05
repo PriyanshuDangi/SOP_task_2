@@ -77,12 +77,6 @@
         <p class="email"><%= user.email %></p>
         <p>Age: <%= user.age%></p>
         <p>TotalArticle: <%= user.totalArticle %></p>
-        <!-- <div style="margin: 24px 0;">
-          <a href="#"><i class="fa fa-dribbble"></i></a> 
-          <a href="#"><i class="fa fa-twitter"></i></a>  
-          <a href="#"><i class="fa fa-linkedin"></i></a>  
-          <a href="#"><i class="fa fa-facebook"></i></a> 
-        </div> -->
         <div id="count">
             <p>Followers: <br><%= user.followersCount%></p>
             <p>Following:  <br><%= user.followingCount%></p>
@@ -94,8 +88,7 @@
       	<h2 style="text-align: center;" >Articles</h2>
       	<% for(let i=0 ; i < user.article.length; i++ ) {%>
 			<div class="articleContainer" onclick="window.location.href = '/article/view/<%= user.article[i]._id %>';">
-				<h3><%= user.article[i].title %></h3> 
-				<!-- <span style="float: right;">( 11 march 20002 )</span> -->
+				<h3><%= user.article[i].title %></h3>
 			</div>
       	<% } %>
     </div>
